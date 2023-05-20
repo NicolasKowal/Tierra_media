@@ -1,27 +1,7 @@
 import json
 from funciones import *
-
-class Perfil:
-    def __init__(self,nombre, tipo, tiempo, dinero):
-        self.nombre = nombre
-        self.tipo = tipo
-        self.tiempo = tiempo
-        self.dinero = dinero
-        self.total = 0
-
-    def __str__(self) -> str:
-        return f"{self.nombre} es el tipo {self.tipo}, cuenta con {self.tiempo} horas y tiene {self.dinero} monedas"
-    
-class Atraccion:
-    def __init__(self, nombre, precio, tiempo, cupo, tipo) -> None:
-        self.nombre = nombre
-        self.precio = precio
-        self.tiempo = tiempo
-        self.cupo = cupo
-        self.tipo = tipo
-        
-    def __str__(self) -> str:
-         return f"{self.nombre}"
+from Atracciones import *
+from Perfiles import *
 
 atracciones = abir_archivo("atracciones.json")
 perfiles = abir_archivo("perfiles.json")
