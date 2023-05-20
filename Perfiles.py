@@ -7,4 +7,4 @@ class Perfil:
         self.total = 0
 
     def __str__(self) -> str:
-        return f"{self.nombre} es el tipo {self.tipo}, cuenta con {self.tiempo} horas y tiene {self.dinero} monedas"
+        return f"{self.nombre} es el tipo {self.tipo}, cuenta con {self.tiempo} horas y tiene {self.dinero} monedas."

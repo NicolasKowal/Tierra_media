@@ -7,3 +7,10 @@ def abir_archivo(nombre):
     data = json.loads(contenido)
     estruct = data
     return estruct
+
+def guardar_archivo(nombre,lista):
+    pass
+
+def mostrar(lista):
+    for elemento in lista:
+        print(elemento)
