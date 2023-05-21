@@ -1,1 +1,5 @@
-[ ["Aventura", "Bosque negro", "Mordor", "20% de descuento"], ["Degustacion", "Lothlorien", "Comarca", "36 monedas"], ["Paisajes", "Minas tirith", "Abismo de helm", "Erebor gratis"] ]
+[
+  [0, "Aventura", "Bosque negro", "Mordor", 20],
+  [1, "Degustacion", "Lothlorien", "La comarca", 36],
+  [2, "Paisajes", "Minas tirith", "Abismo de helm", "Erebor"]
+]

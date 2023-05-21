@@ -1,5 +1,5 @@
 class Perfil:
-    def __init__(self,nombre, tipo, tiempo, dinero):
+    def __init__(self, nombre, tipo, tiempo, dinero):
         self.nombre = nombre
         self.tipo = tipo
         self.tiempo = tiempo

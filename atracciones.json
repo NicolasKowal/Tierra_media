@@ -1,1 +1,10 @@
-[["Lothlorien", 35, 1.0, 30, "Banquete" ],[ "Mordor", 25, 3.0, 4,"Aventura"], ["Erebor", 12, 3.0, 32, "Paisajes" ], ["Minas de moria", 10, 2.0, 6, "Aventura"], ["Minas tirith", 5, 2.5, 25, "Paisajes"], ["Abismo de helm", 5, 2.0, 15, "Paisajes"], ["La comarca", 3, 6.5, 150, "Banquete"], ["Bosque negro", 3, 4.0, 12, "Aventura"]]
+[
+  ["Lothlorien", 35, 1.0, 30, "Banquete"],
+  ["Mordor", 25, 3.0, 4, "Aventura"],
+  ["Erebor", 12, 3.0, 32, "Paisajes"],
+  ["Minas de moria", 10, 2.0, 6, "Aventura"],
+  ["Minas tirith", 5, 2.5, 25, "Paisajes"],
+  ["Abismo de helm", 5, 2.0, 15, "Paisajes"],
+  ["La comarca", 3, 6.5, 150, "Banquete"],
+  ["Bosque negro", 3, 4.0, 12, "Aventura"]
+]
