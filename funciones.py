@@ -10,7 +10,8 @@ def abir_archivo(nombre):
 
 
 def guardar_archivo(nombre, lista):
-    pass
+    with open(nombre, "w") as archivo:
+        json.dump(lista, archivo)
 
 
 def mostrar(lista):
