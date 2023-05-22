@@ -53,6 +53,12 @@ for persona in personas:
     for promo in promos:
         if x == opcion - 1:
             condicion = promo.tipo
+            if condicion == 0:
+                tipodepromo = promo.porcentaje
+            elif condicion == 1:
+                tipodepromo = promo.precio
+            elif condicion == 2:
+                tipodepromo = promo.atr3
         x += 1
 
     if condicion == 0:
@@ -86,8 +92,7 @@ for persona in personas:
                     atraccion.cupo -= 1
                     persona.tiempo -= atraccion.tiempo
                     tiempototal += atraccion.tiempo
-            # se guarda el descuento  MODIFICAR *-*-*-*-*-*-*-*-*-*-*-*-*
-            total = subtotal - subtotal*.2
+            total = calcular_porcentaje(subtotal, tipodepromo)
             persona.dinero -= total
             print(
                 f"\nTu total es de {total} monedas, te quedaron {persona.dinero} monedas.\nTu tour va a durar {tiempototal} horas.\n")
@@ -105,8 +110,7 @@ for persona in personas:
                         persona.dinero -= atraccion.precio
                         persona.tiempo -= atraccion.tiempo
                         atraccion.cupo -= 1
-                        total += atraccion.tiempo
-                        subtotal += atraccion.precio
+                        total += atraccion.precio
                         tiempototal += atraccion.tiempo
                         carrito.append(atraccion.nombre)
                     elif persona.dinero < atraccion.precio:
@@ -125,7 +129,7 @@ for persona in personas:
                         persona.dinero -= atraccion.precio
                         persona.tiempo -= atraccion.tiempo
                         atraccion.cupo -= 1
-                        total += atraccion.tiempo
+                        total += atraccion.precio
                         subtotal += atraccion.precio
                         tiempototal += atraccion.tiempo
                         carrito.append(atraccion.nombre)
@@ -137,5 +141,6 @@ for persona in personas:
                             f"Tiempo insuficiente! tienes {persona.tiempo} horas y {atraccion.nombre} cuesta {atraccion.tiempo} horas")
         print("Atracciones adquiridas:")
         mostrar(carrito)
+        persona.dinero = round(persona.dinero, 1)
         print(
             f"\nTu total es de {total} monedas, te quedaron {persona.dinero} monedas.\nTu tour va a durar {tiempototal} horas.")
