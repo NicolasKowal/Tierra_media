@@ -69,9 +69,14 @@ for persona in personas:
             if atraccion.nombre == atr1:
                 subtotal += atraccion.precio
                 tiempototal = atraccion.tiempo
+                cupo1 = atraccion.cupo
             if atraccion.nombre == atr2:
                 subtotal += atraccion.precio
                 tiempototal += atraccion.tiempo
+                cupo2 = atraccion.cupo
+
+        if cupo1 < 1 or cupo2 < 1:
+            print("No hay cupo")
 
         # si tiene tiempo y dinero, se procede con la compra
         if persona.dinero >= subtotal and persona.tiempo >= tiempototal:
@@ -101,7 +106,7 @@ for persona in personas:
 
         for atraccion in atracciones:
             # se muestran atracciones de otro tipo, que no sean de promociones
-            if atraccion.tipo == persona.tipo and atraccion.nombre != atr1 and atraccion.nombre != atr2:
+            if atraccion.tipo == persona.tipo and atraccion.nombre != atr1 and atraccion.nombre != atr2 and atraccion.cupo > 0:
                 print(atraccion)
                 opcion = limites(1, 2, "1.Si\n2.No\nAcepta?: ")
                 if opcion == 1:
@@ -144,3 +149,93 @@ for persona in personas:
         persona.dinero = round(persona.dinero, 1)
         print(
             f"\nTu total es de {total} monedas, te quedaron {persona.dinero} monedas.\nTu tour va a durar {tiempototal} horas.")
+    if condicion == 1:
+        # nombres de las atracciones de la promo guardadas
+        atr1 = promos[opcion-1].atr1
+        atr2 = promos[opcion-1].atr2
+
+        for atraccion in atracciones:  # se calcula si se tiene tiempo o plata
+            if atraccion.nombre == atr1:
+                cupo1 = atraccion.cupo
+                tiempototal = atraccion.tiempo
+            if atraccion.nombre == atr2:
+                cupo2 = atraccion.cupo
+                tiempototal += atraccion.tiempo
+
+        subtotal = tipodepromo
+
+        if cupo1 < 1 or cupo2 < 1:
+            print("No hay cupo")
+
+        # si tiene tiempo y dinero, se procede con la compra
+        if persona.dinero >= subtotal and persona.tiempo >= tiempototal and cupo1 >= 1 and cupo2 >= 1:
+            print("Compra confirmada!\n")
+            carrito.append(atr1)  # se agrega al carrito las atracciones
+            carrito.append(atr2)
+            tiempototal = 0
+
+            for atraccion in atracciones:
+                if atraccion.nombre == atr1:  # se recorren las atracciones para sacar el tiempo y el precio de la primer atraccion
+
+                    persona.tiempo -= atraccion.tiempo
+                    atraccion.cupo -= 1
+                    tiempototal += atraccion.tiempo
+                if atraccion.nombre == atr2:  # se recorren las atracciones para sacar el tiempo y el precio de la segunda atraccion
+
+                    atraccion.cupo -= 1
+                    persona.tiempo -= atraccion.tiempo
+                    tiempototal += atraccion.tiempo
+
+            persona.dinero -= tipodepromo
+            print(
+                f"\nTu total es de {tipodepromo} monedas, te quedaron {persona.dinero} monedas.\nTu tour va a durar {tiempototal} horas.\n")
+
+        else:
+            print("DINERO O TIEMPO INSUFICIENTE")
+
+        for atraccion in atracciones:
+            # se muestran atracciones de otro tipo, que no sean de promociones
+            if atraccion.tipo == persona.tipo and atraccion.nombre != atr1 and atraccion.nombre != atr2 and atraccion.cupo >= 1:
+                print(atraccion)
+                opcion = limites(1, 2, "1.Si\n2.No\nAcepta?: ")
+                if opcion == 1:
+                    if persona.dinero >= atraccion.precio and persona.tiempo >= atraccion.tiempo:
+                        print("\nCompra confirmada!\n")
+                        persona.dinero -= atraccion.precio
+                        persona.tiempo -= atraccion.tiempo
+                        atraccion.cupo -= 1
+                        total += atraccion.precio
+                        tiempototal += atraccion.tiempo
+                        carrito.append(atraccion.nombre)
+                    elif persona.dinero < atraccion.precio:
+                        print(
+                            f"Dinero insuficiente! tienes {persona.dinero} monedas y {atraccion.nombre} cuesta {atraccion.precio} monedas")
+                    elif persona.tiempo < atraccion.tiempo:
+                        print(
+                            f"Tiempo insuficiente! tienes {persona.tiempo} horas y {atraccion.nombre} cuesta {atraccion.tiempo} horas")
+
+        for atraccion in atracciones:
+            if atraccion.tipo != persona.tipo and atraccion.nombre != atr1 and atraccion.nombre != atr2 and atraccion.cupo >= 1:
+                print(atraccion)
+                opcion = limites(1, 2, "1.Si\n2.No\nAcepta?: ")
+                if opcion == 1:
+                    if persona.dinero >= atraccion.precio and persona.tiempo >= atraccion.tiempo:
+                        print("\nCompra confirmada!\n")
+                        persona.dinero -= atraccion.precio
+                        persona.tiempo -= atraccion.tiempo
+                        atraccion.cupo -= 1
+                        total += atraccion.precio
+                        subtotal += atraccion.precio
+                        tiempototal += atraccion.tiempo
+                        carrito.append(atraccion.nombre)
+                    elif persona.dinero < atraccion.precio:
+                        print(
+                            f"Dinero insuficiente! tienes {persona.dinero} monedas y {atraccion.nombre} cuesta {atraccion.precio} monedas")
+                    elif persona.tiempo < atraccion.tiempo:
+                        print(
+                            f"Tiempo insuficiente! tienes {persona.tiempo} horas y {atraccion.nombre} cuesta {atraccion.tiempo} horas")
+        print("Atracciones adquiridas:")
+        mostrar(carrito)
+        persona.dinero = round(persona.dinero, 1)
+        print(
+            f"\nTu total es de {subtotal + total} monedas, te quedaron {persona.dinero} monedas.\nTu tour va a durar {tiempototal} horas.")
