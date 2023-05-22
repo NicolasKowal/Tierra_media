@@ -7,4 +7,4 @@ class Atraccion:
         self.tipo = tipo
 
     def __str__(self) -> str:
-        return f"La atraccion {self.nombre} es del tipo {self.tipo}, dura {self.tiempo} horas y cuesta {self.precio}. Actualmente cuenta con {self.cupo} cupos."
+        return f"La atraccion {self.nombre} es del tipo {self.tipo}, dura {self.tiempo} horas y cuesta {self.precio} monedas. Actualmente cuenta con {self.cupo} cupos."

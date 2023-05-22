@@ -35,3 +35,6 @@ def limites(inferior, superior, frase="numero"):
             f"El numero tiene que ser mayor que {inferior} y menor que {superior}")
         numero = validar_numeros(frase)
     return numero
+
+def calcular_porcentaje(numero, porcentaje):
+    return numero - (porcentaje * numero /100)
